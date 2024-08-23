@@ -1,0 +1,38 @@
+.shout {
+	width: 100%;
+	background: $color-white;
+	border-radius: 8px;
+	padding: 12px 24px;
+	box-sizing: border-box;
+	margin: 24px 0;
+
+	strong a {
+		text-decoration: none;
+	}
+
+	.btn-edit,
+	.btn-cancel,
+	.btn-edit-submit,
+	.btn-follow,
+	.btn-unfollow {
+		margin-left: auto;
+
+		i {
+			font-size: 1rem;
+		}
+	}
+
+	.grid {
+		grid-template-columns: auto 1fr;
+		margin: 16px 0;
+
+		label {
+			margin-right: 16px;
+		}
+	}
+
+	textarea,
+	input[type="text"] {
+		margin: 0;
+	}
+}

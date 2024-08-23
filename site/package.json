@@ -1,0 +1,25 @@
+{
+	"name": "soapbox-site",
+	"version": "1.0.0",
+	"description": "Soapbox is a Web3 free speech platform.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"author": "AJ Savino",
+	"license": "UNLICENSED",
+	"homepage": "https://soapbox.gdn",
+	"dependencies": {
+		"anchor-link": "3.5.0",
+		"anchor-link-browser-transport": "3.5.0",
+		"eosjs": "22.1.0",
+		"next": "12.1.6",
+		"node-fetch": "3.2.6",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"sass": "1.52.3",
+		"swr": "1.3.0"
+	}
+}

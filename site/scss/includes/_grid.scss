@@ -1,0 +1,114 @@
+/*
+* Apply display grid as well as optional col / row count
+*
+* grid() example
+*
+* div {
+*     @include grid;
+* }
+*
+* div {
+*     @include grid(4, 2); //4 columns, 2 rows
+* }
+*/
+@mixin grid($cols: null, $rows: null) {
+	display: grid;
+	display: -ms-grid;
+
+	@if ($cols) {
+		grid-template-columns: repeat($cols, 1fr);
+
+		//IE11 doesn't support repeat so instead we have to write 1fr multiple times
+		$col_fr: 1fr;
+		@if ($cols > 1) {
+			@for $c from 1 through ($cols - 1) {
+				$col_fr: $col_fr 1fr; //String concatination
+			}
+		}
+		-ms-grid-columns: $col_fr;
+	}
+	@if ($rows) {
+		grid-template-rows: repeat($rows, 1fr);
+
+		//IE11 doesn't support repeat so instead we have to write 1fr multiple times
+		$row_fr: 1fr;
+		@if ($rows > 1) {
+			@for $r from 1 through ($rows - 1) {
+				$row_fr: $row_fr 1fr; //String concatination
+			}
+		}
+		-ms-grid-rows: $row_fr;
+	}
+}
+
+/*
+* Position a child element within the grid row
+*
+* grid-child($col-start, $col-end) example
+*
+* div {
+*     @include grid-child-col(2); //Position child to column 2
+* }
+*
+* div {
+*     @include grid-child-col(1, 2); //Position child from column 1 spanning width to column 2
+* }
+*/
+@mixin grid-child-col($col-start: 1, $col-end: null) {
+	@if ($col-end == null) {
+		$col-end: $col-start;
+	}
+	-ms-grid-column: $col-start;
+	-ms-grid-column-span: ($col-end + 1) - $col-start;
+	grid-column: $col-start / span ($col-end + 1) - $col-start;
+}
+
+/*
+* Position a child element within the grid column
+*
+* grid-child($row-start, $row-end) example
+*
+* div {
+*     @include grid-child-row(2); //Position child to row 2
+* }
+*
+* div {
+*     @include grid-child-row(1, 2); //Position child from row 1 spanning height to row 2
+* }
+*/
+@mixin grid-child-row($row-start: 1, $row-end: null) {
+	@if ($row-end == null) {
+		$row-end: $row-start;
+	}
+	-ms-grid-row: $row-start;
+	-ms-grid-row-span: ($row-end + 1) - $row-start;
+	grid-row: $row-start / span ($row-end + 1) - $row-start;
+}
+
+/*
+* Align grid child horizontally
+*
+* grid-child-align-h($align) example
+*
+* div {
+*     @include grid-child-align-h(end); //Position child to right
+* }
+*/
+@mixin grid-child-align-h($align) {
+	justify-self: $align;
+	-ms-grid-column-align: $align;
+}
+
+/*
+* Align grid child vertically
+*
+* grid-child-align-v($align) example
+*
+* div {
+*     @include grid-child-align-v(end); //Position child to bottom
+* }
+*/
+@mixin grid-child-align-v($align) {
+	align-self: $align;
+	-ms-grid-row-align: $align;
+}
